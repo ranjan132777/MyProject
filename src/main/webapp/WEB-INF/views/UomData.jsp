@@ -5,7 +5,7 @@
 <body>
 	<H3>WELCOME TO Uom TYPE DATA PAGE</H3>
 	<c:choose>
-		<c:when test="${!Empty list}">
+		<c:when test="${!empty list}">
 			<table border="1">
 				<tr>
 					<th>ID</th>
@@ -13,9 +13,7 @@
 					<th>Model</th>
 					<th>Desc</th>
 				<tr>
-
-
-					<td><a href="delete?uomid=${obj.uomid}">DELETE</a></td>
+               <td><a href="delete?uomid=${obj.uomid}">DELETE</a></td>
 				<tr>
 					<td>${obj.uomid}</td>
 					<td>${obj.uomType}</td>

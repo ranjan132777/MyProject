@@ -10,5 +10,9 @@ public interface IUomDao {
 	public Integer saveUom(Uom obj); 
 	public List<Uom>getAllUoms();
 	public void deleteUom(Integer id);
+	public Uom getOneUom(Integer id);
+	public void updateUom(Uom obj);
+
+public List<Object[]> getUomIdAndUomModel();
 
 }

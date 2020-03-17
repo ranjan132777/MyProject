@@ -48,8 +48,31 @@ public class UomController {
 		model.addAttribute(message, message);
 		// fetch new data
 		List<Uom> list = service.getAllUoms();
-		model.addAttribute("lis", list);
+		model.addAttribute("list", list);
 		return "uom";
 
 	}
+	
+	@RequestMapping("/edit")
+	public String ShowEditPage(@RequestParam("sid") Integer id, Model model) {
+		Uom st = service.getOneUom(id);
+		model.addAttribute("uom", st);
+		return "UomEdit";
+
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+public String updateUom(@ModelAttribute Uom uom, Model model) {
+		service.updateUom(uom);
+		
+		String message = "Uom'" + uom.getUomid() + "' Updated";
+		model.addAttribute("message", message);
+
+		List<Uom> list = service.getAllUoms();
+		model.addAttribute("list", list);
+
+		return "UomData";
+
+	}
+
 }

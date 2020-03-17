@@ -11,7 +11,6 @@ import javax.persistence.Table;
 public class ShipmentType {
 	@Id
 	@GeneratedValue
-
 	@Column(name = "sid")
 	private Integer shipId;
 	@Column(name = "smode")

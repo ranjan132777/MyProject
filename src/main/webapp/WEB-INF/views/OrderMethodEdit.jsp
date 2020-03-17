@@ -1,8 +1,8 @@
-S<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<html>
+<%-- <html>
 <body>
 
 	<h3>Welcome to OrderMethod Edit Page</h3>
@@ -30,4 +30,4 @@ Description:
 
 	${message}
 </body>
-</html>
+</html> --%>

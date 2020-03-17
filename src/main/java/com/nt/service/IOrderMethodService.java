@@ -10,6 +10,9 @@ public	Integer saveOrderMethod(OrderMethod obj);
 	public void deleteOrderMethod(Integer id);
 	public OrderMethod getOneOrderMethod(Integer id);
 	public void updateOrderMethod(OrderMethod obj);
+	public List<Object[]> getOrderIdAndCode(String mode); 
+		
+		
 	}
 
 

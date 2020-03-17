@@ -7,6 +7,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.nt.dao.IUomDao;
+import com.nt.model.ShipmentType;
 import com.nt.model.Uom;
 @Repository
 public class UomDAoImpl implements IUomDao {
@@ -29,8 +30,22 @@ public class UomDAoImpl implements IUomDao {
 
 		
 		}
+	public Uom getOneUom(Integer id) {
+		return ht.get(Uom.class, id);
+	}
 
-		}
+	public void updateUom(Uom obj) {
+		ht.update(obj);
+
+	}
+	public List<Object[]> getUomIdAndUomModel() {
+		String hql="select id,UomModel from com.nt.nit.Model.Uom";
+		List<Object[]> list=(List<Object[]>)ht.find(hql);
+		return list;
+	}
+	}
+
+		
 
 	
 

@@ -41,8 +41,29 @@ public class UomServiceImpl implements IUomService {
 
 
 	}
+	@Transactional(readOnly=true)
+
+	public Uom getOneUom(Integer id) {
+		return dao.getOneUom(id);
+	}
+
+	@Transactional
+	public void updateUom(Uom obj) {
+		dao.updateUom(obj);
+	
+	}
+
+	@Transactional(readOnly=true)
+
+	public List<Object[]> getUomIdAndUomModel() {
+		
+		return dao.getUomIdAndUomModel();
+	}
 
 
-		}
+	}
+
+
+		
 
 

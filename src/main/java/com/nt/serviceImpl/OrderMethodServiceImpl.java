@@ -44,4 +44,11 @@ dao.deleteOrderMethod(id);
 dao.updateOrderMethod(obj);
 	}
 
+@Transactional(readOnly=true)
+
+public List<Object[]> getOrderIdAndCode(String mode) {
+	return dao.getOrderIdAndCode(mode);
 }
+}
+
+

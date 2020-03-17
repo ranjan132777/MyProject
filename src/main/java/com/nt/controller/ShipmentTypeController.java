@@ -3,6 +3,8 @@ package com.nt.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nt.model.ShipmentType;
 import com.nt.service.IShipmentTypeService;
+import com.nt.util.ShipmentTypeUtil;
 import com.nt.view.ShipmentTypeExcelView;
 import com.nt.view.ShipmentTypePdfView;
 
@@ -22,10 +25,15 @@ import com.nt.view.ShipmentTypePdfView;
 public class ShipmentTypeController {
 	@Autowired
 	private IShipmentTypeService service;
+	
+	@Autowired
+	private ServletContext context;
+	@Autowired
+	private ShipmentTypeUtil util;
 
 	@RequestMapping("/register")
-	public String ShowRegPage(ShipmentType shipmentType) {
-		//model.addAttribute("ShipmentType",new ShipmentType());
+	public String ShowRegPage(ShipmentType shipmentType,Model model) {
+		model.addAttribute("ShipmentType",new ShipmentType());
 
 		return "ShipmentTypeRegister";
 
@@ -40,7 +48,7 @@ public class ShipmentTypeController {
 		String message = "ShipmentType'" + result + "' saved";
 
 		model.addAttribute("ShipmentType", new ShipmentType());
-		model.addAttribute("message", message);
+		//model.addAttribute("message", message);
 
 		return "ShipmentTypeRegister";
 	}
@@ -91,7 +99,7 @@ public String updateShipmentType(@ModelAttribute ShipmentType shipmentType, Mode
 	@RequestMapping("/view")
 	public String ShowOneShipment(@RequestParam("sid") Integer id, Model model) {
 		ShipmentType st = service.getOneShipmentType(id);
-		model.addAttribute("ob", st);
+		model.addAttribute("obj", st);
 		return "ShipmentTypeView";
 
 	}
@@ -137,4 +145,16 @@ public String updateShipmentType(@ModelAttribute ShipmentType shipmentType, Mode
 		}
 		return m;
 		
-}}
+}
+
+@RequestMapping("/charts")
+public String showCharts() {
+	List<Object[]> list=service.getShimentModeCount();
+	String path=context.getRealPath("/");
+	util.generatePie(path, list);
+	util.generateBar(path, list);
+	return "ShipmentTypeCharts";
+	
+}
+
+}

@@ -21,19 +21,19 @@ public class OrderMethod {
 	@Id
 	@GeneratedValue(generator = "omidgen")
 	@GenericGenerator(name = "omidgen", strategy = "increment")
-	@Column(name = "omid")
+	@Column(name ="omid")
 
 	private Integer ordermethodId;
 
-	@Column(name = "ommode")
+	@Column(name ="ommode")
 
 	private String orderMode;
 
-	@Column(name = "omcode")
+	@Column(name ="omcode")
 
 	private String ordeCode;
 
-	@Column(name = "omtype")
+	@Column(name ="omtype")
 
 	private String orderType;
 	@ElementCollection(fetch = FetchType.EAGER)

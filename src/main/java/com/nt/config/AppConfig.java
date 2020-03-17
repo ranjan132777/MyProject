@@ -15,7 +15,10 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.nt.model.ShipmentType;
@@ -27,10 +30,11 @@ import com.nt.model.ShipmentType;
 @PropertySource("classpath:application.properties")
 //all layered classes common package name
 @ComponentScan("com.nt")
-public class AppConfig {
+public class AppConfig implements WebMvcConfigurer{
+
 	@Autowired
 	private Environment env;
-	
+
 	//1. DataSource
 	@Bean
 	public DataSource ds() {
@@ -42,6 +46,7 @@ public class AppConfig {
 		return d;
 	}
 	//2. SessionFactrory
+
 	@Bean
 	public LocalSessionFactoryBean sf() {
 		LocalSessionFactoryBean s=new LocalSessionFactoryBean();
@@ -59,10 +64,10 @@ public class AppConfig {
 		p.put("hibernate.format_sql", env.getProperty("orm.fmtsql"));
 		p.put("hibernate.hbm2ddl.auto", env.getProperty("orm.ddlauto"));
 		return p;
-		
+
 
 	}
-	
+
 	//3. HT
 	@Bean
 	public HibernateTemplate ht() {
@@ -85,5 +90,17 @@ public class AppConfig {
 		v.setSuffix(env.getProperty("mvc.suffix"));
 		return v;
 	}
+
+	//6. Activate CMF
+	@Bean
+	public CommonsMultipartResolver  multipartResolver() {
+		return new CommonsMultipartResolver();
+
+	}
 	
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**")
+		.addResourceLocations("/resources/");
+	}
+
 }
