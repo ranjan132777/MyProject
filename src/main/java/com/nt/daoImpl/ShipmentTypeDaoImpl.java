@@ -45,4 +45,13 @@ String hql="  select shipMode,count(shipMode)" + "from com.nt.model.ShipmentType
 	return (List<Object[]>) ht.find(hql);
 }
 
+public ShipmentType getWhUserTypeIdAndCode(String string) {
+	return ht.get(ShipmentType.class, string);
+}
+
+@Override
+public List<Object[]> getWhUserTypeIdAndCode() {
+	return null;
+}
+
 }

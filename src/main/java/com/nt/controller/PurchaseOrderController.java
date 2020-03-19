@@ -23,6 +23,7 @@ import com.nt.util.CommonUtil;
 @RequestMapping("/po")
 
 public class PurchaseOrderController {
+
 	@Autowired
 	private IPurchaseOrderService service;
 	
@@ -41,7 +42,7 @@ public String ShowRegPage(Part part,Model model) {
 //it will show dropdowns at UI(Reg/edit )
 private void CommonUi(Model model) {
 List<Object[]> shipList=shipmentservice.getWhUserTypeIdAndCode("vendor");
-Map<Integer,String> whvenmap=CommonUtil.convert(whvenmap);
+Map<Integer, String> whvenmap=CommonUtil.convert(shipList);
 model.addAttribute("WhVenMap" ,whvenmap);
 }
 

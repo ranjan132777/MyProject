@@ -11,4 +11,6 @@ public void deleteShipmentType(Integer id);
 public ShipmentType getOneShipmentType(Integer id);
 public void updateShipmentType(ShipmentType obj);
 public List<Object[]> getShimentModeCount();
+public List<Object[]> getWhUserTypeIdAndCode();
+
 }
