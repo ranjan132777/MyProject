@@ -24,6 +24,7 @@ private HibernateTemplate ht;
 
 	public Document getOneDocument(Integer id) {
 		return ht.get(Document.class, id);
+		
 	}
 
 }

@@ -61,6 +61,13 @@ public class UomServiceImpl implements IUomService {
 	}
 
 
+	@Override
+	public boolean isUomModelExist(String uomModel) {
+		return dao.isUomModelExist(uomModel);
+		
+		}
+
+
 	}
 
 

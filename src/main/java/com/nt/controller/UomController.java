@@ -2,8 +2,11 @@ package com.nt.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,26 +14,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nt.model.Uom;
 import com.nt.service.IUomService;
+import com.nt.validator.UomValidator;
 
 @Controller
 @RequestMapping("/uom")
 public class UomController {
+	private UomValidator validator;
+
+	@Autowired
 	private IUomService service;
 
 	@RequestMapping("/register")
 	public String ShowRegPage() {
 		return "UomRegister";
 	}
-
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveUom(@ModelAttribute Uom uom, Model model) {
-
-		Integer id =service.saveUom(uom);
-		String message = "Uom," + id + "'saved";
-		model.addAttribute("message", message);
-
+	@RequestMapping(value = "/save",method =RequestMethod.POST)
+	public String saveUom(
+			@ModelAttribute Uom uom, 
+			Errors errors, //must be next param to @ModelAttribute
+			ModelMap map) 
+	{
+		//must be called before save
+		validator.validate(uom, errors);
+		
+		if(!errors.hasErrors()) { //If no errors are exist
+			Integer id=service.saveUom(uom);
+			map.addAttribute("message","Uom created with Id:"+id);
+			map.addAttribute("uom",new Uom()) ;
+		}else { //If errors exist
+			map.addAttribute("message","Please Check all Errors!");
+		}
 		return "UomRegister";
-	}
+	
+		}
 
 	@RequestMapping(value = "/all")
 	public String getAllUoms(Model model) {

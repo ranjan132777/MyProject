@@ -23,7 +23,7 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService {
 	@Transactional(readOnly = true)
 	public List<WhUserType> getAllWhUserType() {
 		List<WhUserType> list = dao.getAllWhUserTypes();
-		Collections.sort(list, (o1, o2) -> o1.getUserId() - o2.getUserId());
+		Collections.sort(list, (o1, o2) -> o1.getId() - o2.getId());
 
 		return list;
 
@@ -60,6 +60,21 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService {
 
 	public List<Object[]> getWhUserTypeIdAndCode(String userType) {
 		return dao.getWhUserTypeIdAndCode(userType);
+	}
+	@Transactional(readOnly = true)
+
+	public boolean isUserCodeExist(String userCode) {
+		return dao.isUserCodeExist(userCode);
+	}
+	@Transactional(readOnly = true)
+
+	public boolean isUserMailExist(String userMail) {
+		return dao.isUserMailExist(userMail);
+	}
+
+	@Transactional(readOnly = true)
+	public boolean isUserContactExist(String userContact) {
+		return dao.isUserContactExist(userContact);
 	}
 
 }

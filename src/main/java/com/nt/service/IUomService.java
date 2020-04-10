@@ -13,5 +13,6 @@ public interface IUomService {
 	public void updateUom(Uom obj);
 
 	public List<Object[]> getUomIdAndUomModel(); 
-		
+	boolean isUomModelExist(String uomModel);
+
 }

@@ -13,5 +13,10 @@ public interface WhUserTypeDao {
 	public WhUserType getOneWhUserType(Integer id);
 	public void updateWhUserType(WhUserType obj);
 	public List<Object[]> getWhUserTypeIdAndCode(String userType); 
+boolean isUserCodeExist(String userCode);
+	
+	boolean isUserMailExist(String userMail);
+	
+	boolean isUserContactExist(String userContact);
 
 }

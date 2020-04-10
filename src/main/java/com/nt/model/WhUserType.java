@@ -11,107 +11,107 @@ import javax.persistence.Table;
 public class WhUserType {
 	@Id
 	@GeneratedValue
-	@Column(name = "uid")
-	private Integer userId;
-	@Column(name = "utype")
-
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "usrtype")
 	private String userType;
-	@Column(name = "ucode")
-	private Integer userCode;
-	@Column(name = "ufor")
+	@Column(name = "usrfor")
 	private String userFor;
-	@Column(name = "uemail")
-	private String userEmail;
-	@Column(name = "ucontact")
-	private Long userContact;
-	@Column(name = "uidtype")
-	private String userIdType;
-	@Column(name = "ifother")
+	@Column(name = "usremail")
+	private String userMail;
+	@Column(name = "usrcnt")
+	private String userContact;
+	@Column(name = "usridtyp")
+	private String idType;
+	
+	@Column(name = "usrcode")
+	private String userCode;
+	
+	@Column(name = "usrothr")
 	private String ifOther;
-	@Column(name = "idnumber")
-	private Long idNumber;
-
-	public WhUserType(Integer id) {
+	
+	@Column(name = "uidnum")
+	private String idNum;
+	
+	@Column(name = "usrdesc")
+	private String note;
+	
+	public WhUserType() {
 		super();
 	}
-
-	public Integer getUserId() {
-		return userId;
+	public WhUserType(Integer id) {
+		super();
+		this.id = id;
 	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public Integer getId() {
+		return id;
 	}
-
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getUserType() {
 		return userType;
 	}
-
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-
-	public Integer getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(Integer userCode) {
-		this.userCode = userCode;
-	}
-
 	public String getUserFor() {
 		return userFor;
 	}
-
 	public void setUserFor(String userFor) {
 		this.userFor = userFor;
 	}
-
-	public String getUserEmail() {
-		return userEmail;
+	
+	public String getUserMail() {
+		return userMail;
 	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setUserMail(String userMail) {
+		this.userMail = userMail;
 	}
-
-	public Long getUserContact() {
+	public String getUserContact() {
 		return userContact;
 	}
-
-	public void setUserContact(Long userContact) {
+	public void setUserContact(String userContact) {
 		this.userContact = userContact;
 	}
-
-	public String getUserIdType() {
-		return userIdType;
+	
+	public String getIdType() {
+		return idType;
 	}
-
-	public void setUserIdType(String userIdType) {
-		this.userIdType = userIdType;
+	public void setIdType(String idType) {
+		this.idType = idType;
 	}
-
+	public String getUserCode() {
+		return userCode;
+	}
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 	public String getIfOther() {
 		return ifOther;
 	}
-
 	public void setIfOther(String ifOther) {
 		this.ifOther = ifOther;
 	}
-
-	public Long getIdNumber() {
-		return idNumber;
+	public String getNote() {
+		return note;
 	}
-
-	public void setIdNumber(Long idNumber) {
-		this.idNumber = idNumber;
+	public void setNote(String note) {
+		this.note = note;
 	}
-
+	public String getIdNum() {
+		return idNum;
+	}
+	public void setIdNum(String idNum) {
+		this.idNum = idNum;
+	}
 	@Override
 	public String toString() {
-		return "WHUserType [userType=" + userType + ", userCode=" + userCode + ", userFor=" + userFor + ", userEmail="
-				+ userEmail + ", userContact=" + userContact + ", userIdType=" + userIdType + ", ifOther=" + ifOther
-				+ ", idNumber=" + idNumber + "]";
+		return "WhUserType [id=" + id + ", userType=" + userType + ", userFor=" + userFor + ", userEmail=" + userMail
+				+ ", userContact=" + userContact + ", idType=" + idType + ", userCode=" + userCode
+				+ ", ifOther=" + ifOther + ", idNum=" + idNum + ", note=" + note + "]";
 	}
+	
 
 }
+

@@ -25,7 +25,7 @@ public class UomDAoImpl implements IUomDao {
 
 
 	public void deleteUom(Integer id) {
-		ht.delete(new Uom (id));
+		ht.delete(new Uom ());
 		
 
 		
@@ -43,9 +43,19 @@ public class UomDAoImpl implements IUomDao {
 		List<Object[]> list=(List<Object[]>)ht.find(hql);
 		return list;
 	}
+	public boolean isUomModelExist(String uomModel) {
+		boolean flag=false;
+		String hql=" select count(uomModel) from in.nit.model.Uom where uomModel=?0 ";
+		@SuppressWarnings({ "unchecked", "deprecation" })
+		List<Long> list=(List<Long>) ht.find(hql,uomModel);
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0) flag=false;
+			else flag=true;
+		}
+		return flag;
 	}
 
-		
-
+}
 	
 

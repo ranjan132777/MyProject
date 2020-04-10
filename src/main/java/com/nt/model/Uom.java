@@ -35,7 +35,7 @@ public class Uom {
 	
 	
 
-	public Uom(Integer id) {
+	public Uom() {
 		super();
 	}
 
