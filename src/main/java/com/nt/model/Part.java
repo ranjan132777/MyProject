@@ -8,11 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="parttable")
 public class Part {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator = "part_gen")
+	@GenericGenerator(name="part_gen",strategy="increment")
 	@Column(name="id")
 	private Integer Id;
 	@Column(name="pcode")
@@ -38,15 +41,15 @@ public class Part {
 	private String Note;
 	
 	  @ManyToOne
-	  
 	  @JoinColumn(name="uomidFk")
-	  
-	  @Column(name="uomob") private Uom uomOb;
+	  //@Column(name="uomob")
+	  private Uom uomOb;
 	 
 	
 	@ManyToOne
 	@JoinColumn(name="orderSaleIdFk")
 	private OrderMethod omsaleOb;
+	
 	@ManyToOne
 	@JoinColumn(name="orderPurchaseIdFk")
 	private OrderMethod omPurchaseOb;

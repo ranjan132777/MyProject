@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.nt.model.ShipmentType;
+import com.nt.model.Uom;
 
 @Configuration
 @EnableTransactionManagement //eables HtX
@@ -52,7 +53,7 @@ public class AppConfig implements WebMvcConfigurer{
 		LocalSessionFactoryBean s=new LocalSessionFactoryBean();
 		s.setDataSource(ds());
 		s.setHibernateProperties(props());
-		//s.setAnnotatedClasses(ShipmentType.class);
+		s.setAnnotatedClasses(Uom.class);
 		s.setPackagesToScan("com.nt.model");
 		return s;
 	}

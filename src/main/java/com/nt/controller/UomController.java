@@ -25,25 +25,29 @@ public class UomController {
 	private IUomService service;
 
 	@RequestMapping("/register")
-	public String ShowRegPage() {
+	public String ShowRegPage(ModelMap map) {
+		map.addAttribute("uom", new Uom());
 		return "UomRegister";
 	}
 	@RequestMapping(value = "/save",method =RequestMethod.POST)
-	public String saveUom(
-			@ModelAttribute Uom uom, 
-			Errors errors, //must be next param to @ModelAttribute
-			ModelMap map) 
+	public String saveUom(@ModelAttribute Uom uom,ModelMap map) 
 	{
-		//must be called before save
-		validator.validate(uom, errors);
 		
-		if(!errors.hasErrors()) { //If no errors are exist
-			Integer id=service.saveUom(uom);
-			map.addAttribute("message","Uom created with Id:"+id);
-			map.addAttribute("uom",new Uom()) ;
-		}else { //If errors exist
-			map.addAttribute("message","Please Check all Errors!");
-		}
+		/*
+		 * //must be called before save validator.validate(uom, errors);
+		 * 
+		 * if(!errors.hasErrors()) { //If no errors are exist Integer
+		 * id=service.saveUom(uom);
+		 * map.addAttribute("message","Uom created with Id:"+id);
+		 * map.addAttribute("uom",new Uom()) ; }else { //If errors exist
+		 * map.addAttribute("message","Please Check all Errors!"); }
+		 */		
+		
+		String msg=null;
+		Integer ids=service.saveUom(uom);
+		msg="Uom Id;-'"+ids+"'Saved Success";
+		map.addAttribute("message", msg);
+		map.addAttribute("uom", new Uom());
 		return "UomRegister";
 	
 		}
@@ -57,15 +61,15 @@ public class UomController {
 	}
 
 	@RequestMapping("/delete")
-	public String deleteUom(@RequestParam("uid") Integer id, Model model) {
+	public String deleteUom(@RequestParam("id") Integer id, Model model) {
 
 		service.deleteUom(id);
-		String message = "Uom'" + id + "'Deleted";
-		model.addAttribute(message, message);
+		String msg = "Uom'" + id + "'Deleted";
+		model.addAttribute("message", msg);
 		// fetch new data
 		List<Uom> list = service.getAllUoms();
 		model.addAttribute("list", list);
-		return "uom";
+		return "UomData";
 
 	}
 	

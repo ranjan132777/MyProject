@@ -4,12 +4,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nt.dao.WhUserTypeDao;
 import com.nt.model.WhUserType;
 import com.nt.service.IWhUserTypeService;
-
+@Service
 public class WhUserTypeServiceImpl implements IWhUserTypeService {
 	@Autowired
 	private WhUserTypeDao dao;

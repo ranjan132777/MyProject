@@ -4,17 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "uomtable")
 public class Uom {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "uomid")
+	@GeneratedValue(generator = "uom_gen")
+	@GenericGenerator(name="uom_gen",strategy = "increment")
+	@Column(name = "uid")
 	private Integer uomid;
 	@Column(name = "utype")
     private String uomType;
@@ -25,18 +27,30 @@ public class Uom {
 
 	private String uomDesc;
 	
-	@ManyToOne
-	@JoinColumn(name="uomidFk")
-	@Column(name = "uomob")
-
-	private Uom uomOb;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="uomidFk")
+	 * 
+	 * @Column(name = "uomob")
+	 */
+	//private Uom uomOb;
 	
-	
-	
-	
-
 	public Uom() {
 		super();
+	}
+
+	public Uom(Integer uomid) {
+		super();
+		this.uomid = uomid;
+	}
+
+	public Uom(Integer uomid, String uomType, String uomModel, String uomDesc) {
+		super();
+		this.uomid = uomid;
+		this.uomType = uomType;
+		this.uomModel = uomModel;
+		this.uomDesc = uomDesc;
 	}
 
 	public Integer getUomid() {
@@ -70,19 +84,12 @@ public class Uom {
 	public void setUomDesc(String uomDesc) {
 		this.uomDesc = uomDesc;
 	}
-	public Uom getUomOb() {
-		return uomOb;
-	}
-
-	public void setUomOb(Uom uomOb) {
-		this.uomOb = uomOb;
-	}
 
 	@Override
 	public String toString() {
-		return "Uom [uomid=" + uomid + ", uomType=" + uomType + ", uomModel=" + uomModel + ", uomDesc=" + uomDesc
-				+ ", uomOb=" + uomOb + "]";
+		return "Uom [uomid=" + uomid + ", uomType=" + uomType + ", uomModel=" + uomModel + ", uomDesc=" + uomDesc + "]";
 	}
-
+	
+	
 	
 }

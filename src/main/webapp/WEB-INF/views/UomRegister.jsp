@@ -1,6 +1,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
+
 </head>
 <body>
 	<%@include file="UserMenu.jsp"%>
@@ -47,7 +48,7 @@
 							<label for="note"> NOTE</label>
 						</div>
 						<div class="col-4">
-							<form:textarea path="note" class="form-control" />
+							<form:textarea path="uomDesc" class="form-control" />
 						</div>
 						<div class="col-4" id="noteError"></div>
 					</div>
